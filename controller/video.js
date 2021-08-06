@@ -14,6 +14,20 @@ class Video {
       });
     });
   }
+
+  one(id){
+    const sql = `SELECT * FROM video WHERE id=${id}`;
+    return new Promise((resolve, reject) => {
+      connection.query(sql, null, (error, results, field) => {
+        if(error) {
+          reject(error);
+        } else {
+          if(results.length == 0) resolve('Video não encontrado');
+          resolve(results);
+        }
+      })
+    });
+  }
 }
 
 module.exports = new Video();
