@@ -22,6 +22,7 @@ VideoRouter.post('/', async (req, res) => {
 
 VideoRouter.patch('/:id', async (req, res) => {
   const alteracoes = req.body;
+  console.log(req.body)
   const {id} = req.params;
   Video.patch(id, alteracoes)
   .then((resolve) => res.status(200).json({...alteracoes, message: 'alterações feitas com sucesso'}))
