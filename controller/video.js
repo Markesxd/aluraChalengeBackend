@@ -70,6 +70,19 @@ class Video {
       });
     });
   }
+
+  search(term){
+    return new Promise((resolve, reject) => {
+      const sql = `SELECT * FROM video WHERE titulo LIKE "%${term}%"`;
+      connection.query(sql, null, (error, results) => {
+        if(error){
+          reject(error);
+        } else{
+          resolve(results);
+        }
+      })
+    })
+  }
 }
 
 module.exports = new Video();

@@ -68,6 +68,19 @@ class Categorias {
     });
   }
 
+  videos(id){
+    return new Promise((resolve, reject) => {
+      const sql = `SELECT * FROM video WHERE categoriaId=${id}`
+      connection.query(sql, null, (error, results) => {
+        if(error){
+          reject(error);
+        }else{
+          resolve(results);
+        }
+      })
+    });
+  }
+
 }
 
 module.exports = new Categorias();

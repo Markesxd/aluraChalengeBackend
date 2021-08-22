@@ -3,8 +3,16 @@ const Video = require('../controller/video');
 
 
 VideoRouter.get("/", async (req, res) => {
-  const videos = await Video.all();
-  res.status(200).json(videos);
+  const {search} = req.query;
+  if(search){
+    Video.search(search)
+    .then((resolve) => res.json(resolve))
+    .catch((reject) => res.status(400).json(reject));
+    return;
+  }
+  Video.all()
+  .then((resolve) => res.json(resolve))
+  .catch((reject) => res.status(400).json(reject));
 });
 
 VideoRouter.get("/:id", async (req, res) => {

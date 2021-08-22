@@ -41,4 +41,11 @@ CategoriasRouter.delete('/:id', async (req, res) => {
   .catch((reject) => res.status(400).json(reject));
 })
 
+CategoriasRouter.get('/:id/videos', async(req, res) => {
+  const {id} = req.params;
+  Categorias.videos(id)
+  .then((resolve) => res.json(resolve))
+  .catch((reject) => res.status(400).json(reject));
+});
+
 module.exports = CategoriasRouter;
